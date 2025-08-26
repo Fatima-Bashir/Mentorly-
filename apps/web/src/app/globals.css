@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    /* Custom dark theme with specified colors */
+    --background: 15 23 42; /* #0f172a - Slate-900 */
+    --foreground: 241 245 249; /* #f1f5f9 - Slate-100 */
+
+    --card: 30 41 59; /* Slightly lighter than background */
+    --card-foreground: 241 245 249;
+
+    --popover: 30 41 59;
+    --popover-foreground: 241 245 249;
+
+    --primary: 139 92 246; /* #8b5cf6 - Violet-500 */
+    --primary-foreground: 241 245 249;
+
+    --secondary: 56 189 248; /* #38bdf8 - Sky-400 */
+    --secondary-foreground: 15 23 42;
+
+    --muted: 51 65 85;
+    --muted-foreground: 148 163 184;
+
+    --accent: 34 197 94; /* #22c55e - Green-500 */
+    --accent-foreground: 15 23 42;
+
+    --destructive: 239 68 68; /* Red-500 for errors */
+    --destructive-foreground: 241 245 249;
+
+    --border: 51 65 85;
+    --input: 51 65 85;
+    --ring: 139 92 246;
+
+    --radius: 16px;
+    
+    /* Custom color palette matching the exact specification */
+    --violet: 139 92 246; /* #8b5cf6 */
+    --sky: 56 189 248; /* #38bdf8 */
+    --green: 34 197 94; /* #22c55e */
+    --slate-text: 241 245 249; /* #f1f5f9 */
+    --slate-bg: 15 23 42; /* #0f172a */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: #0f172a !important;
+    color: #f1f5f9 !important;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+  }
+  h1 {
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  h2 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+  h3 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Inter font optimization */
+  .font-display {
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+  
+  /* Typography utilities for Inter */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+@layer utilities {
+  .glass {
+    backdrop-filter: blur(20px);
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(51, 65, 85, 0.5);
+  }
+  
+  .glass-dark {
+    backdrop-filter: blur(20px);
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(51, 65, 85, 0.5);
+  }
+  
+  .apple-blur {
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+  
+  .apple-shadow {
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
+  }
+  
+  .apple-shadow-large {
+    box-shadow: 0 16px 64px rgba(139, 92, 246, 0.20);
+  }
+  
+  /* FORCE OVERRIDE ALL PROHIBITED COLORS */
+  
+  /* Eliminate any brown, orange, yellow, amber colors */
+  .text-yellow-400,
+  .text-yellow-500,
+  .text-yellow-600,
+  .text-orange-400,
+  .text-orange-500,
+  .text-orange-600,
+  .text-amber-400,
+  .text-amber-500,
+  .text-amber-600,
+  .text-brown-400,
+  .text-brown-500,
+  .text-brown-600,
+  .text-stone-400,
+  .text-stone-500,
+  .text-stone-600,
+  .text-neutral-400,
+  .text-neutral-500,
+  .text-neutral-600 {
+    color: #f1f5f9 !important;
+  }
+  
+  .bg-yellow-400,
+  .bg-yellow-500,
+  .bg-yellow-600,
+  .bg-orange-400,
+  .bg-orange-500,
+  .bg-orange-600,
+  .bg-amber-400,
+  .bg-amber-500,
+  .bg-amber-600,
+  .bg-brown-400,
+  .bg-brown-500,
+  .bg-brown-600,
+  .bg-stone-400,
+  .bg-stone-500,
+  .bg-stone-600,
+  .bg-neutral-400,
+  .bg-neutral-500,
+  .bg-neutral-600 {
+    background: #0f172a !important;
+  }
+  
+  /* Force button outline variants to use sky blue */
+  button[data-variant="outline"],
+  .btn-outline,
+  [class*="outline"] button {
+    border-color: #38bdf8 !important;
+    color: #38bdf8 !important;
+    background: transparent !important;
+  }
+  
+  /* Override any brown button styles */
+  button:not([style*="background"]) {
+    background: #8b5cf6 !important;
+    color: white !important;
+  }
+  
+  /* Specifically target outline buttons that might show brown */
+  button[class*="outline"],
+  a[class*="outline"],
+  .btn-outline {
+    border-color: #38bdf8 !important;
+    color: #38bdf8 !important;
+    background: transparent !important;
+  }
+  
+  /* Nuclear option - force any brown color to be correct */
+  *[style*="brown"],
+  *[style*="orange"],
+  *[style*="amber"],
+  *[style*="yellow"] {
+    color: #f1f5f9 !important;
+    background: #0f172a !important;
+  }
+}
+

@@ -1,0 +1,20 @@
+# @author: fatima bashir
+# Minimal requirements to run the FastAPI backend
+
+# FastAPI and web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# Basic utilities
+python-dotenv==1.0.0
+pydantic==2.5.1
+pydantic-settings==2.1.0
+
+# Logging
+structlog==23.2.0
+rich==13.7.0
+
+# For development - comment these out if causing issues
+# sqlalchemy==2.0.23
+# asyncpg==0.29.0

@@ -1,0 +1,4 @@
+# @author: fatima bashir
+packages:
+  - 'apps/*'
+  - 'packages/*'

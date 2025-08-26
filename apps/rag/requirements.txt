@@ -1,0 +1,61 @@
+# @author: fatima bashir
+
+# Force CPU-only Torch (smaller)
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.2.2+cpu
+torchvision==0.17.2+cpu
+torchaudio==2.2.2+cpu
+
+# FastAPI and web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+python-jose[cryptography]==3.3.0
+
+# Database and ORM
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+asyncpg==0.29.0
+
+# Vector database and search
+pgvector==0.2.3
+sentence-transformers==2.2.2
+openai==1.3.7
+
+# Document processing
+PyPDF2==3.0.1
+python-docx==1.1.0
+openpyxl==3.1.2
+beautifulsoup4==4.12.2
+markdown==3.5.1
+
+# Search and ranking
+rank-bm25==0.2.2
+scikit-learn==1.3.2
+numpy==1.25.2
+
+# Async and utilities
+httpx==0.25.2
+aiofiles==23.2.0
+python-dotenv==1.0.0
+pydantic==2.5.1
+pydantic-settings==2.1.0
+
+# Caching
+redis==5.0.1
+hiredis==2.2.3
+
+# Object storage
+minio==7.2.0
+
+# Monitoring and logging
+structlog==23.2.0
+rich==13.7.0
+
+# Development
+pytest==7.4.3
+pytest-asyncio==0.21.1
+black==23.11.0
+isort==5.13.0
+mypy==1.7.1
+

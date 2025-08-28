@@ -59,6 +59,9 @@ export default function ChatPage() {
     setTimeout(scrollToBottom, 50);
     
     try {
+      console.log('🚀 Frontend: Sending message:', currentMessage);
+      console.log('📚 Frontend: Conversation history:', conversationHistory);
+      
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -68,14 +71,19 @@ export default function ChatPage() {
         })
       });
       
+      console.log('📡 Frontend: Response status:', response.status);
+      
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       
       const data = await response.json();
+      console.log('✅ Frontend: API response:', data);
+      console.log('📤 Frontend: AI response status:', data.status);
+      
       setAiResponses(prev => [...prev, data.response]);
       
     } catch (error) {
-      console.error('Error sending message:', error);
-      const fallbackResponse = "I'm here to help with your career! I can assist with resume tips, interview prep, career transitions, and salary negotiation. What would you like guidance on?";
+      console.error('❌ Frontend: Error sending message:', error);
+      const fallbackResponse = "I'm experiencing technical difficulties. Please try refreshing the page or asking your question again. I'm here to help with career advice, resume tips, interview prep, and more!";
       setAiResponses(prev => [...prev, fallbackResponse]);
     } finally {
       setIsLoading(false);

@@ -15,18 +15,15 @@ import {
   Settings,
   Menu,
   Sun,
-  Moon,
-  Edit
+  Moon
 } from "lucide-react";
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
   { icon: Target, label: "Skill Analysis", href: "/skills" },
-  { icon: BookOpen, label: "Learning Plan", href: "/learning" },
   { icon: Brain, label: "Mock Interview", href: "/interview" },
-  { icon: Edit, label: "Resume Builder", href: "/resume-builder" },
-  { icon: MessageCircle, label: "AI Mentor", href: "/chat" },
   { icon: FileText, label: "ATS Optimizer", href: "/ats" },
+  { icon: MessageCircle, label: "AI Mentor", href: "/chat" },
   { icon: Settings, label: "Settings", href: "/settings" },
 ];
 

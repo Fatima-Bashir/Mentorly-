@@ -13,10 +13,16 @@ const openai = new OpenAI({
 });
 
 export async function POST(request: NextRequest) {
+  console.log('🤖 Chat API called');
+  
   try {
     const { message, resume_context, conversation_history = [] }: ChatRequest = await request.json();
+    console.log('📝 Message received:', message);
+    console.log('🔑 OpenAI API Key configured:', !!process.env.OPENAI_API_KEY);
+    console.log('📚 Conversation history length:', conversation_history.length);
     
     if (!message || message.trim() === '') {
+      console.log('❌ Empty message received');
       return NextResponse.json(
         { error: 'Message is required' },
         { status: 400 }
@@ -68,6 +74,7 @@ Be helpful, specific, and action-oriented in every response. Remember: NO MARKDO
     ];
 
     // Call OpenAI API
+    console.log('🚀 Calling OpenAI API...');
     const completion = await openai.chat.completions.create({
       model: 'gpt-4o',
       messages: messages as any,
@@ -75,7 +82,9 @@ Be helpful, specific, and action-oriented in every response. Remember: NO MARKDO
       temperature: 0.7,
     });
 
+    console.log('✅ OpenAI API response received');
     let response = completion.choices[0]?.message?.content || 'I apologize, but I encountered an error. Please try asking your question again.';
+    console.log('📤 Response length:', response.length);
 
     // Strip out ALL markdown formatting
     response = response
@@ -89,20 +98,27 @@ Be helpful, specific, and action-oriented in every response. Remember: NO MARKDO
       .replace(/## (.*?)(\n|$)/g, '$1$2')   // Remove ## headers
       .replace(/# (.*?)(\n|$)/g, '$1$2');   // Remove # headers
 
+    console.log('✅ Returning successful response');
     return NextResponse.json({
       response: response,
       status: 'success'
     });
 
   } catch (error) {
-    console.error('OpenAI API error:', error);
+    console.error('❌ OpenAI API error:', error);
+    console.error('❌ Error details:', {
+      name: error instanceof Error ? error.name : 'Unknown',
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : 'No stack trace'
+    });
     
     // Fallback response if OpenAI fails
+    console.log('🔄 Using fallback response due to error');
     const fallbackResponse = `I'm here to help with your career! I can assist with resume tips, interview prep, career transitions, salary negotiation, and exploring career paths based on your specific interests and situation. What would you like guidance on?`;
     
     return NextResponse.json({
       response: fallbackResponse,
-      status: 'success'
+      status: 'error_fallback'  // Changed to indicate this was a fallback
     });
   }
 }

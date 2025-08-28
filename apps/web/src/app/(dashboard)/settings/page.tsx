@@ -6,7 +6,7 @@ import { useTheme } from '@/lib/ThemeContext';
 
 export default function SettingsPage() {
   const { theme, toggleTheme, colors } = useTheme();
-  const [learningReminders, setLearningReminders] = useState(true);
+
   const [interviewPractice, setInterviewPractice] = useState(true);
   const [weeklyReport, setWeeklyReport] = useState(false);
   return (
@@ -272,43 +272,7 @@ export default function SettingsPage() {
         </div>
         
         <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '16px',
-            borderRadius: '12px',
-            background: theme === 'dark' ? 'rgba(15, 23, 42, 0.8)' : 'rgba(240, 249, 255, 0.8)',
-            border: `1px solid ${colors.cardBorder}`
-          }}>
-            <div>
-              <div style={{fontWeight: '500', color: colors.text}}>Learning Reminders</div>
-              <div style={{fontSize: '14px', opacity: '0.7', color: colors.text}}>Get notified about your daily learning goals</div>
-            </div>
-            <div 
-              onClick={() => setLearningReminders(!learningReminders)}
-              style={{
-                position: 'relative',
-                width: '44px',
-                height: '24px',
-                background: learningReminders ? 'rgba(196, 181, 253, 0.5)' : 'rgba(148, 163, 184, 0.2)',
-                borderRadius: '12px',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
-              }}>
-              <div style={{
-                position: 'absolute',
-                top: '2px',
-                left: learningReminders ? '22px' : '2px',
-                width: '20px',
-                height: '20px',
-                background: 'white',
-                borderRadius: '10px',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
-              }}></div>
-            </div>
-          </div>
+
           
           <div style={{
             display: 'flex',
@@ -419,7 +383,7 @@ export default function SettingsPage() {
           onMouseEnter={(e) => (e.target as HTMLElement).style.transform = 'scale(1.02)'}
           onMouseLeave={(e) => (e.target as HTMLElement).style.transform = 'scale(1)'}>
             <div style={{fontWeight: '500', color: colors.text}}>Export Data</div>
-            <div style={{fontSize: '14px', opacity: '0.7', color: colors.text}}>Download all your learning progress and data</div>
+            <div style={{fontSize: '14px', opacity: '0.7', color: colors.text}}>Download all your resume analysis and profile data</div>
           </button>
           
           <button style={{

@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { ArrowRight, Brain, Target, TrendingUp, Users, Sun, Moon } from 'lucide-react'
+import { ArrowRight, Brain, Target, Users, Sun, Moon } from 'lucide-react'
 import Link from 'next/link'
 import { useTheme } from '@/lib/ThemeContext';
 
@@ -18,11 +18,7 @@ const features = [
     title: 'Skill Gap Heatmap',
     description: 'Visualize your current skills vs. target role requirements with interactive heatmaps'
   },
-  {
-    icon: TrendingUp,
-    title: 'Personalized Learning',
-    description: '4-week structured learning plans with modules and hands-on projects'
-  },
+
   {
     icon: Users,
     title: 'Mock Interviews',
@@ -105,7 +101,7 @@ export default function HomePage() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
           {features.map((feature, index) => {
             const iconColors = ['#8b5cf6', '#38bdf8', '#22c55e', '#8b5cf6'];
             return (
